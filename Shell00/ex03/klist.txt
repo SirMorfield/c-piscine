@@ -1,0 +1,5 @@
+Credentials cache: API:75138
+        Principal: jkoers@CODAM.NL
+
+  Issued                Expires               Principal
+Jul  7 12:03:48 2020  Jul 14 12:03:38 2020  krbtgt/CODAM.NL@CODAM.NL
