@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:21:15 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/25 18:26:35 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/25 22:50:10 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,44 @@
 #include "ft_helpers.h"
 #define MAX_FILE_SIZE 1048576
 
-void		read_dict(char *filename, char *result, unsigned int *n_lines)
+unsigned int	get_num_of_rules(char *dict)
 {
-	int				fd;
-	int				bytes_read;
-	unsigned int	i;
+	unsigned int	n_lines;
 
-	result = malloc(MAX_FILE_SIZE);
+	n_lines = 0;
+	while (*dict != '\0')
+	{
+		if (*dict == '\n')
+			n_lines++;
+		dict++;
+	}
+	return (n_lines);
+}
+
+char			*read_dict(char *filename)
+{
+	char			*dict;
+	int				fd;
+	unsigned int	bytes_read;
+
+	dict = malloc(MAX_FILE_SIZE);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("%s\n", filename);
 		write(1, "error\n", 6);
-		exit(1);
-	}
-	bytes_read = read(fd, result, MAX_FILE_SIZE);
-	result[bytes_read] = '\0';
-	*n_lines = 0;
-	i = 0;
-	while (i < *n_lines)
-	{
-		if (result[i] == '\n')
-			*n_lines += 1;
-		i++;
-	}
+	bytes_read = read(fd, dict, MAX_FILE_SIZE);
+	dict[bytes_read] = '\0';
+	close(fd);
+	return (dict);
+}
+
+void			get_rule(char *dict, char *start, unsigned int *rule_length)
+{
+	start = dict;
+	while (!is_number(*start))
+		start++;
+	*rule_length = 0;
+	while (start[*rule_length] != '\n')
+		*rule_length += 1;
 }
 
 void		set_name_rule(char *line, t_name_rule *rule)
@@ -73,31 +87,21 @@ void		set_name_rule(char *line, t_name_rule *rule)
 
 t_name_rule	*parse_dict(char *filename, unsigned int *number_of_names)
 {
-	int				str_i;
-	unsigned int	n_lines;
-	t_name_rule		*result;
-	char			*str = NULL;
+	int				dict_i;
+	unsigned int	num_of_rules;
+	t_name_rule		*result = NULL;
+	char			*dict = NULL;
 	int				prev_newline_i;
 
-	str_i = 0;
-		printf("%s\n", filename);
+	dict = read_dict(filename);
+	num_of_rules = get_num_of_rules(dict);
+	result = malloc(num_of_rules * sizeof(t_name_rule));
 
-	read_dict(filename, str, &n_lines);
-	result = malloc(n_lines * sizeof(t_name_rule));
-	*number_of_names = n_lines;
 	prev_newline_i = -1;
 	while (1)
 	{
-		if (str[str_i] == '\n')
-		{
-			n_lines--;
-			set_name_rule(str + prev_newline_i + 1, result + n_lines);
-			prev_newline_i = str_i;
-		}
-		str_i++;
-		if (str == '\0')
-			break ;
+		get_rule(dict, )
 	}
-	free(str);
+	free(dict);
 	return (result);
 }

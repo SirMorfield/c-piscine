@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:51:01 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/25 18:25:30 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/25 21:48:32 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int		main(void)
 {
 	t_name_rule	*rules;
-	unsigned int number_of_names;
+	unsigned int number_of_names = 0;
 	char *filename = "../dicts/numbers.dict";
 	unsigned int i = 0;
 

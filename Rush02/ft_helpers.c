@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:41:08 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/25 15:51:43 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/25 22:29:51 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 		i++;
 	}
 	return (dest);
+}
+
+int is_number(char c)
+{
+	return (c >= '0' && c <= '9');
 }
