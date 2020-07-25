@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/14 19:05:11 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/23 17:00:54 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/25 10:42:06 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		find_first_significant_digit(int n)
 		if (nth_least_sig_digit((long long)n, i) != '0')
 		{
 			break ;
-		}	
+		}
 		i--;
 	}
 	return (i);

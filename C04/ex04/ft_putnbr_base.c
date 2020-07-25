@@ -6,12 +6,11 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/15 14:21:36 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/23 10:06:06 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/25 12:14:10 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 int		contains_duplicates(char *arr)
 {
@@ -33,40 +32,41 @@ int		contains_duplicates(char *arr)
 	return (0);
 }
 
-int		is_invalid_input(char *base)
+int		get_base_n(char *base)
 {
-	unsigned long i;
+	unsigned int	i;
 
 	i = 0;
 	if (!base)
 		return (1);
 	if (base[0] == '\0' || base[1] == '\0')
-		return (1);
+		return (-1);
 	if (contains_duplicates(base))
-		return (1);
+		return (-1);
 	while (base[i] != '\0')
 	{
 		if (base[i] == '+' || base[i] == '-')
-			return (1);
+			return (-1);
 		i++;
 	}
-	return (0);
+	i = 0;
+	while (base[i] != '\0')
+		i++;
+	return ((int)i);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int		base_n;
-	char	results[32];
 	int		result_i;
 	long	nbr_cpy;
+	int		base_n;
+	char	results[33];
 
 	result_i = 0;
-	base_n = 0;
-	nbr_cpy = nbr < 0 ? -nbr : nbr;
-	if (is_invalid_input(base))
+	nbr_cpy = nbr < 0 ? -((long)nbr) : (long)nbr;
+	base_n = get_base_n(base);
+	if (base_n == -1)
 		return ;
-	while (base[base_n] != '\0')
-		base_n++;
 	while (1)
 	{
 		results[result_i] = base[nbr_cpy % base_n];
@@ -77,6 +77,9 @@ void	ft_putnbr_base(int nbr, char *base)
 	}
 	if (nbr < 0)
 		write(1, "-", 1);
-	while (result_i-- >= 0)
+	while (result_i > 0)
+	{
 		write(1, results + result_i, 1);
+		result_i--;
+	}
 }
