@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_helpers.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: sgloudem <sgloudem@student.codam.nl>         +#+                     */
+/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/23 11:26:22 by sgloudem      #+#    #+#                 */
-/*   Updated: 2020/07/23 11:26:58 by sgloudem      ########   odam.nl         */
+/*   Created: 2020/07/25 14:41:08 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/07/25 15:51:43 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_helpers.h"
 
-int		ft_str_is_lowercase(char *str);
-
-int main(void)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	  int l;
-	  
-	  l = ft_str_is_lowercase("AAaa");
-	  printf("%d", l);
-	   
+	unsigned int i;
+
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

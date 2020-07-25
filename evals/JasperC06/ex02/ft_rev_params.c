@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlowcase.c                                    :+:    :+:            */
+/*   ft_rev_params.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: sgloudem <sgloudem@student.codam.nl>         +#+                     */
+/*   By: jsimonis <jsimonis@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/23 12:57:50 by sgloudem      #+#    #+#                 */
-/*   Updated: 2020/07/24 14:46:30 by jkoers        ########   odam.nl         */
+/*   Created: 2020/07/22 15:36:47 by jsimonis      #+#    #+#                 */
+/*   Updated: 2020/07/24 15:42:02 by jsimonis      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-char		*ft_strlowcase(char *str)
-{
-	int i;
+#include <unistd.h>
 
-	i = 0;
-	while (str[i] != '\0')
+int	ft_strlen(char *str)
+{
+	int len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+int	main(int argc, char *argv[])
+{
+	while (argc > 1)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		i++;
+		argc--;
+		write(1, argv[argc], ft_strlen(argv[argc]));
+		write(1, "\n", 1);
 	}
-	return (str);
 }

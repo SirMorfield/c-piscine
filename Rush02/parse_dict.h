@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_str_is_numeric.c                                :+:    :+:            */
+/*   parse_dict.h                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: sgloudem <sgloudem@student.codam.nl>         +#+                     */
+/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/23 11:04:57 by sgloudem      #+#    #+#                 */
-/*   Updated: 2020/07/23 11:22:13 by sgloudem      ########   odam.nl         */
+/*   Created: 2020/07/25 14:21:17 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/07/25 18:02:05 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_str_is_numeric(char *str)
-{
-	int i;
+#ifndef PARSE_DICT_H
+# define PARSE_DICT_H
 
-	i = 0;
-	while (str[i] != '\0')
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			i++;
-		}
-		else
-		{
-			return (0);
-			i++;
-		}
-	return (1);
-}
+typedef struct	s_name_rule
+{
+	unsigned int	number_length;
+	char			*number;
+	char			*name;
+}				t_name_rule;
+
+t_name_rule		*parse_dict(char *filename, unsigned int *number_of_names);
+
+#endif
