@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:21:15 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 13:47:08 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 14:15:30 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ t_name_rule	*malloc_for_rules(char *dict, unsigned int *n_rules)
 	while (1)
 	{
 		match_rule(dict, &start_i, &end_i);
-		printf("indexes %u %u", start_i, end_i);
-		printf("<%c> <%c>\n", dict[start_i], dict[end_i - 1]);
+		// printf("indexes %u %u", start_i, end_i);
+		// printf("<%c> <%c>\n", dict[start_i], dict[end_i - 1]);
 		if (dict[start_i] == '\0' || dict[end_i] == '\0')
 			break ;
 		*n_rules += 1;
@@ -92,8 +92,8 @@ void		set_rule(t_name_rule *rule, char *str)
 	while (is_number(str[i]))
 		i++;
 	rule->number = malloc(i + 1);
-	ft_strncpy(rule->number, str, i);
 	rule->number[i] = '\0';
+	ft_strncpy(rule->number, str, i);
 	while (str[i] == ' ' || str[i] == ':')
 		i++;
 	str += i;
@@ -102,11 +102,12 @@ void		set_rule(t_name_rule *rule, char *str)
 		i++;
 	rule->name = malloc(i + 1);
 	rule->name[i] = '\0';
-	ft_strncpy(rule->number, str, i);
+	ft_strncpy(rule->name, str, i);
 	rule->number_length = i;
+	// printf("<%s>\n", rule->number);
 }
 
-t_name_rule	*parse_dict(char *filename, unsigned int *number_of_names)
+t_name_rule	*parse_dict(char *filename, unsigned int *number_of_rules)
 {
 	char			*dict = NULL;
 	t_name_rule		*rules;
@@ -116,17 +117,20 @@ t_name_rule	*parse_dict(char *filename, unsigned int *number_of_names)
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	dict = read_dict(filename);
-	ft_putstr(dict);
 	rules = malloc_for_rules(dict, &n_rules);
-	printf("\nn_rules %u\n", n_rules);
-	// *number_of_names = n_rules;
-	// start_i = 0;
-	// while (n_rules > 0)
-	// {
-	// 	n_rules--;
-	// 	match_rule(dict, &start_i, &end_i);
-	// 	set_rule(rules + n_rules, dict + start_i);
-	// }
+	// printf("\nn_rules %u\n", n_rules);
+	*number_of_rules = n_rules;
+	start_i = 0;
+	while (n_rules > 0)
+	{
+		n_rules--;
+		match_rule(dict, &start_i, &end_i);
+		// printf("<");
+		// write(1, dict + start_i, end_i - start_i);
+		// printf(">\n");
+		set_rule(rules + n_rules, dict + start_i);
+		start_i = end_i + 1;
+	}
 	free(dict);
 	return (rules);
 }

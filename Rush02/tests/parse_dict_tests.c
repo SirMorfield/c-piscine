@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:51:01 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 12:27:25 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 14:15:32 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 int		main(void)
 {
 	t_name_rule	*rules;
-	unsigned int number_of_names;
+	unsigned int number_of_rules;
 	char *filename = "../dicts/numbers.dict";
 	unsigned int i = 0;
 
-	rules = parse_dict(filename, &number_of_names);
-	while (i < number_of_names)
+	rules = parse_dict(filename, &number_of_rules);
+	while (i < number_of_rules)
 	{
-		printf("%s\n", rules[i].number);
-		printf("%u\n", rules[i].number_length);
-		printf("%s\n", rules[i].name);
+		printf("number        <%s>\n", rules[i].number);
+		printf("number_length %u\n", rules[i].number_length);
+		printf("name          <%s>\n", rules[i].name);
 		printf("\n");
 		i++;
 	}
