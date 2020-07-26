@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:21:17 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 12:26:53 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 13:40:49 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ typedef struct	s_name_rule
 	char			*name;
 }				t_name_rule;
 
-t_name_rule		*parse_dict(char *filename, unsigned int *number_of_names);
+t_name_rule		*parse_dict(char *filename, unsigned int *n_rules);
 
 #endif

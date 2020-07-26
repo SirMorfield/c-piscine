@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:21:15 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 12:29:33 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 13:47:08 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*read_dict(char *filename)
 	dict = malloc(MAX_FILE_SIZE);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		write(1, "error\n", 6);
+		write(1, "error1\n", 7);
 	bytes_read = read(fd, dict, MAX_FILE_SIZE);
 	dict[bytes_read] = '\0';
 	close(fd);
@@ -39,17 +39,19 @@ void		match_rule(char *dict, unsigned int *start_i, unsigned int *end_i)
 	unsigned int i;
 
 	i = *start_i;
+	if (dict[i] == '\0')
+		return ;
 	while (dict[i] != '\0' && !is_number(dict[i]))
 		i++;
-	i = *start_i;
+	*start_i = i;
 	while (dict[i] != '\0' && is_number(dict[i]))
 		i++;
 	while (dict[i] != '\0' && dict[i] == ' ')
 		i++;
-	if (dict[i] != '\0' && dict[i] != ':')
+	if (dict[i] == '\0' || dict[i] != ':')
 	{
 		i++;
-		write(1, "error\n", 6);
+		// printf("expected \':\' got \'%c\'\n", dict[i]);
 	}
 	while (dict[i] != '\0' && dict[i] != '\n')
 		i++;
@@ -70,10 +72,13 @@ t_name_rule	*malloc_for_rules(char *dict, unsigned int *n_rules)
 	*n_rules = 0;
 	while (1)
 	{
-		*n_rules += 1;
 		match_rule(dict, &start_i, &end_i);
+		printf("indexes %u %u", start_i, end_i);
+		printf("<%c> <%c>\n", dict[start_i], dict[end_i - 1]);
 		if (dict[start_i] == '\0' || dict[end_i] == '\0')
 			break ;
+		*n_rules += 1;
+		start_i = end_i;
 	}
 	rules = malloc(*n_rules * sizeof(t_name_rule));
 	return (rules);
@@ -109,16 +114,19 @@ t_name_rule	*parse_dict(char *filename, unsigned int *number_of_names)
 	unsigned int	end_i;
 	unsigned int	n_rules;
 
+	setvbuf(stdout, NULL, _IONBF, 0);
 	dict = read_dict(filename);
+	ft_putstr(dict);
 	rules = malloc_for_rules(dict, &n_rules);
-	*number_of_names = n_rules;
-	start_i = 0;
-	while (n_rules > 0)
-	{
-		n_rules--;
-		match_rule(dict, &start_i, &end_i);
-		set_rule(rules + n_rules, dict + start_i);
-	}
+	printf("\nn_rules %u\n", n_rules);
+	// *number_of_names = n_rules;
+	// start_i = 0;
+	// while (n_rules > 0)
+	// {
+	// 	n_rules--;
+	// 	match_rule(dict, &start_i, &end_i);
+	// 	set_rule(rules + n_rules, dict + start_i);
+	// }
 	free(dict);
 	return (rules);
 }

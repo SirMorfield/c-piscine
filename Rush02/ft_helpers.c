@@ -6,11 +6,22 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:41:08 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/25 22:29:51 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/26 12:35:01 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_helpers.h"
+#include <unistd.h>
+
+void	ft_putstr(char *str)
+{
+	unsigned long i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	write(1, str, i);
+}
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
