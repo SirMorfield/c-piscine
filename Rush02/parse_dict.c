@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:21:15 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/25 22:50:10 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/26 12:29:33 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,9 @@
 #include <stdio.h>
 #include "parse_dict.h"
 #include "ft_helpers.h"
-#define MAX_FILE_SIZE 1048576
+#define MAX_FILE_SIZE 10485760
 
-unsigned int	get_num_of_rules(char *dict)
-{
-	unsigned int	n_lines;
-
-	n_lines = 0;
-	while (*dict != '\0')
-	{
-		if (*dict == '\n')
-			n_lines++;
-		dict++;
-	}
-	return (n_lines);
-}
-
-char			*read_dict(char *filename)
+char		*read_dict(char *filename)
 {
 	char			*dict;
 	int				fd;
@@ -48,60 +34,91 @@ char			*read_dict(char *filename)
 	return (dict);
 }
 
-void			get_rule(char *dict, char *start, unsigned int *rule_length)
+void		match_rule(char *dict, unsigned int *start_i, unsigned int *end_i)
 {
-	start = dict;
-	while (!is_number(*start))
-		start++;
-	*rule_length = 0;
-	while (start[*rule_length] != '\n')
-		*rule_length += 1;
+	unsigned int i;
+
+	i = *start_i;
+	while (dict[i] != '\0' && !is_number(dict[i]))
+		i++;
+	i = *start_i;
+	while (dict[i] != '\0' && is_number(dict[i]))
+		i++;
+	while (dict[i] != '\0' && dict[i] == ' ')
+		i++;
+	if (dict[i] != '\0' && dict[i] != ':')
+	{
+		i++;
+		write(1, "error\n", 6);
+	}
+	while (dict[i] != '\0' && dict[i] != '\n')
+		i++;
+	*end_i = i;
 }
 
-void		set_name_rule(char *line, t_name_rule *rule)
+/*
+**	>= n_rules alloc
+*/
+
+t_name_rule	*malloc_for_rules(char *dict, unsigned int *n_rules)
+{
+	t_name_rule		*rules = NULL;
+	unsigned int	start_i;
+	unsigned int	end_i;
+
+	start_i = 0;
+	*n_rules = 0;
+	while (1)
+	{
+		*n_rules += 1;
+		match_rule(dict, &start_i, &end_i);
+		if (dict[start_i] == '\0' || dict[end_i] == '\0')
+			break ;
+	}
+	rules = malloc(*n_rules * sizeof(t_name_rule));
+	return (rules);
+}
+
+void		set_rule(t_name_rule *rule, char *str)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (line[i] >= '0' && line[i] <= '9')
+	while (is_number(str[i]))
 		i++;
 	rule->number = malloc(i + 1);
-	ft_strncpy(rule->number, line, i);
+	ft_strncpy(rule->number, str, i);
 	rule->number[i] = '\0';
-	line += i;
-	while (*line == ' ')
-		line++;
-	if (*line != ':')
-		exit(1);
-	line++;
-	while (*line == ' ')
-		line++;
+	while (str[i] == ' ' || str[i] == ':')
+		i++;
+	str += i;
 	i = 0;
-	while (line[i] != '\n')
+	while (str[i] != '\n')
 		i++;
 	rule->name = malloc(i + 1);
 	rule->name[i] = '\0';
-	ft_strncpy(rule->number, line, i);
+	ft_strncpy(rule->number, str, i);
 	rule->number_length = i;
 }
 
 t_name_rule	*parse_dict(char *filename, unsigned int *number_of_names)
 {
-	int				dict_i;
-	unsigned int	num_of_rules;
-	t_name_rule		*result = NULL;
 	char			*dict = NULL;
-	int				prev_newline_i;
+	t_name_rule		*rules;
+	unsigned int	start_i;
+	unsigned int	end_i;
+	unsigned int	n_rules;
 
 	dict = read_dict(filename);
-	num_of_rules = get_num_of_rules(dict);
-	result = malloc(num_of_rules * sizeof(t_name_rule));
-
-	prev_newline_i = -1;
-	while (1)
+	rules = malloc_for_rules(dict, &n_rules);
+	*number_of_names = n_rules;
+	start_i = 0;
+	while (n_rules > 0)
 	{
-		get_rule(dict, )
+		n_rules--;
+		match_rule(dict, &start_i, &end_i);
+		set_rule(rules + n_rules, dict + start_i);
 	}
 	free(dict);
-	return (result);
+	return (rules);
 }
