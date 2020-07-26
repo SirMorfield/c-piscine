@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:51:01 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 14:15:32 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 14:28:51 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		main(void)
 		printf("\n");
 		i++;
 	}
+	free(rules);
 	return (0);
 }
