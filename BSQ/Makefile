@@ -6,19 +6,33 @@
 #    By: jkoers <jkoers@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/24 14:54:00 by jkoers        #+#    #+#                  #
-#    Updated: 2020/07/27 15:29:47 by jkoers        ########   odam.nl          #
+#    Updated: 2020/07/28 00:27:51 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-bsq: install install/main.o install/grid.o install/ft_atoi.o
-	gcc -Wall -Wextra -Werror install/*.o -o bsq
-install/main.o: install main.c grid.h
-	gcc -Wall -Wextra -Werror -c main.c -o install/main.o
-install/grid.o: install grid.c grid.h
-	gcc -Wall -Wextra -Werror -c grid.c -o install/grid.o
-install/ft_atoi.o: install ft_atoi.c ft_atoi.h
-	gcc -Wall -Wextra -Werror -c ft_atoi.c -o install/ft_atoi.o
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+bsq:	install/main.o \
+		install/load_map.o \
+		install/ft_helpers.o \
+		install/matrix_memory.o \
+		install/canvas.o \
+		install/fit_squares.o
+	$(CC) $(CFLAGS) install/*.o -o bsq
+install/main.o: main.c load_map.h canvas.h fit_squares.h
+	$(CC) $(CFLAGS) -c main.c -o install/main.o
+install/load_map.o: load_map.c load_map.h matrix_memory.h ft_helpers.h
+	$(CC) $(CFLAGS) -c load_map.c -o install/load_map.o
+install/ft_helpers.o: ft_helpers.c ft_helpers.h
+	$(CC) $(CFLAGS) -c ft_helpers.c -o install/ft_helpers.o
+install/matrix_memory.o: matrix_memory.c matrix_memory.h
+	$(CC) $(CFLAGS) -c matrix_memory.c -o install/matrix_memory.o
+install/canvas.o: canvas.c canvas.h load_map.h
+	$(CC) $(CFLAGS) -c canvas.c -o install/canvas.o
+install/fit_squares.o: fit_squares.c fit_squares.h
+	$(CC) $(CFLAGS) -c fit_squares.c -o install/fit_squares.o
+
 clean fclean:
 	rm -rf install/ bsq
-install:
-	mkdir install
+$(shell mkdir -p install)

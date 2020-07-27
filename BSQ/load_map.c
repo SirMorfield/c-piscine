@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   grid.c                                             :+:    :+:            */
+/*   load_map.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/24 15:27:09 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/27 16:06:01 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/27 21:12:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
-#include "ft_atoi.h"
+#include "ft_helpers.h"
+#include "matrix_memory.h"
 
-void	goto_start_map(int fd)
+void	read_until_newline(int fd)
 {
 	char tmp;
 
@@ -68,7 +68,7 @@ void	get_size(char *filename, unsigned int *x_size, unsigned int *y_size)
 	close(fd);
 }
 
-char	**get_grid(char *filename)
+char	**load_map(char *filename)
 {
 	unsigned int	i;
 	int				fd;
@@ -79,35 +79,14 @@ char	**get_grid(char *filename)
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	get_size(filename, &x_size, &y_size);
-	result = malloc(y_size * sizeof(char*));
-	goto_start_map(fd);
+	result = malloc_matrix(x_size, y_size);
+	read_until_newline(fd);
 	while (i < y_size)
 	{
-		result[i] = malloc((x_size + 1) * sizeof(char));
-		read(fd, result[i], x_size + 1);
-		result[i][x_size] = '\0';
+		read(fd, result[i], x_size);
+		read_until_newline(fd);
 		i++;
 	}
 	close(fd);
 	return (result);
-}
-
-void	write_grid(int fd, char **grid, unsigned int y_size)
-{
-	unsigned int i;
-	unsigned int str_i;
-
-	i = 0;
-	str_i = 0;
-	while (i < y_size)
-	{
-		str_i = 0;
-		while (grid[i][str_i] != '\0')
-		{
-			write(fd, grid[i] + str_i, 1);
-			str_i++;
-		}
-		write(fd, "\n", 1);
-		i++;
-	}
 }

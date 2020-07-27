@@ -6,34 +6,45 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 15:06:10 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/27 16:02:48 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/28 01:02:55 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdio.h>
-#include "grid.h"
+#include "canvas.h"
+#include "fit_squares.h"
+#include "load_map.h"
+#include "matrix_memory.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	char			*filename = "example_file";
+	char	*filename;
+	if (argc == 1)
+	{
+		filename = "maps/example_file";
+	}
+	else if (argc == 2)
+	{
+		filename = argv[1];
+	}
 
-
-	char	rules[3];
-	get_legend(filename, rules, rules + 1, rules + 2);
-	printf("empty    <%c>\n", rules[0]);
-	printf("obstacle <%c>\n", rules[1]);
-	printf("full     <%c>\n", rules[2]);
-
-
-	unsigned int	x_size;
-	unsigned int	y_size;
-	get_size(filename, &x_size, &y_size);
-	printf("x_size    %d \n", x_size);
-	printf("y_size    %d \n", y_size);
-
-
-	char **grid = get_grid(filename);
-	write_grid(1, grid, y_size);
+	t_workplace wp;
+	prepare_workplace(&wp, filename);
+	printf("empty    <%c>\n", wp.empty);
+	printf("obstacle <%c>\n", wp.obstacle);
+	printf("full     <%c>\n", wp.full);
+	printf("x_size    %d\n", wp.x_size);
+	printf("y_size    %d\n", wp.y_size);
+	// write_matrix(1, wp.map, wp.x_size, wp.y_size);
+	if (found_biggest_square(&wp))
+	{
+		printf("\n");
+		write_matrix(1, wp.canvas, wp.x_size, wp.y_size);
+	}
+	else
+	{
+		printf("not found\n");
+	}
 	return (0);
 }
