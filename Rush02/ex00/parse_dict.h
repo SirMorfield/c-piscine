@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strncat.c                                       :+:    :+:            */
+/*   parse_dict.h                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gvan-wou <marvin@codam.nl>                   +#+                     */
+/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/12 15:20:19 by gvan-wou      #+#    #+#                 */
-/*   Updated: 2020/07/23 10:34:51 by jkoers        ########   odam.nl         */
+/*   Created: 2020/07/25 14:21:17 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/07/26 17:11:27 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	int				i;
-	unsigned int	j;
+#ifndef PARSE_DICT_H
+# define PARSE_DICT_H
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < nb)
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
-}
+typedef struct	s_name_rule
+{
+	char			*number;
+	unsigned int	number_length;
+	char			*name;
+}				t_name_rule;
+
+t_name_rule		*parse_dict(char *filename);
+
+#endif

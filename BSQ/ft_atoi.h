@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_ft.c                                            :+:    :+:            */
+/*   ft_atoi.h                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gvan-wou <marvin@codam.nl>                   +#+                     */
+/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/12 15:20:19 by gvan-wou      #+#    #+#                 */
-/*   Updated: 2020/07/12 15:21:16 by gvan-wou      ########   odam.nl         */
+/*   Created: 2020/07/27 14:48:36 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/07/27 15:29:35 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char *src)
-{
-	int i;
-	int j;
+#ifndef FT_ATOI_H
+# define FT_ATOI_H
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
-}
+int		ft_atoi(char *str);
+
+#endif

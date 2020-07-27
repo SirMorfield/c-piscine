@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_helpers.h                                       :+:    :+:            */
+/*   find.h                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
+/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/25 14:41:23 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 12:35:42 by jkoers        ########   odam.nl         */
+/*   Created: 2020/07/26 16:23:25 by ngerrets      #+#    #+#                 */
+/*   Updated: 2020/07/26 16:25:32 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HELPERS_H
-# define FT_HELPERS_H
+#ifndef FIND_H
+# define FIND_H
 
-void	ft_putstr(char *str);
-char	*ft_strncpy(char *dest, char *src, unsigned int n);
-int		is_number(char c);
+# include "parse_dict.h"
+
+int		compare_number(char *string, char *number, unsigned int numl);
+char	*generate_compare_number(char first_number, int zeros);
+char	*find_in_dict(char *n, t_name_rule *rules);
 
 #endif

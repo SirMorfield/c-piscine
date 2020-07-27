@@ -6,31 +6,38 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/24 15:27:09 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/24 18:28:56 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/27 16:06:01 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include "ft_atoi.h"
 
-void	offset_read(int fd, unsigned int n)
+void	goto_start_map(int fd)
 {
-	char tmp[n];
+	char tmp;
 
-	read(fd, tmp, n);
+	read(fd, &tmp, 1);
+	while (tmp != '\n')
+		read(fd, &tmp, 1);
 }
 
 void	get_legend(char *filename, char *empty, char *obstacle, char *full)
 {
-	int		fd;
-	char	buf[4];
+	int				fd;
+	char			buf[420];
+	unsigned int	i;
 
 	fd = open(filename, O_RDONLY);
-	read(fd, buf, 4);
-	*empty = buf[1];
-	*obstacle = buf[2];
-	*full = buf[3];
+	read(fd, buf, 420);
+	i = 0;
+	while (buf[i] != '\n')
+		i++;
+	*empty = buf[i - 3];
+	*obstacle = buf[i - 2];
+	*full = buf[i - 1];
 	close(fd);
 }
 
@@ -39,13 +46,13 @@ void	get_size(char *filename, unsigned int *x_size, unsigned int *y_size)
 	int				fd;
 	unsigned int	i;
 	int				start;
-	char			buf[420];
+	char			buf[420000];
 
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	start = -1;
-	read(fd, buf, 420);
-	*y_size = (unsigned int)(buf[0] - 48);
+	read(fd, buf, 420000);
+	*y_size = (unsigned int)ft_atoi(buf);
 	while (1)
 	{
 		if (buf[i] == '\n')
@@ -73,7 +80,7 @@ char	**get_grid(char *filename)
 	fd = open(filename, O_RDONLY);
 	get_size(filename, &x_size, &y_size);
 	result = malloc(y_size * sizeof(char*));
-	offset_read(fd, 5);
+	goto_start_map(fd);
 	while (i < y_size)
 	{
 		result[i] = malloc((x_size + 1) * sizeof(char));

@@ -6,14 +6,24 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/25 14:41:08 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 14:09:53 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/26 17:53:43 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_helpers.h"
 #include <unistd.h>
 
-void	ft_putstr(char *str)
+unsigned int	ft_strlen(char *str)
+{
+	int length;
+
+	length = 0;
+	while (str[length] != '\0')
+		length++;
+	return (length);
+}
+
+void			ft_putstr(char *str)
 {
 	unsigned long i;
 
@@ -23,7 +33,7 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+char			*ft_strncpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int i;
 
@@ -41,7 +51,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-int		is_number(char c)
+int				is_number(char c)
 {
 	return (c >= '0' && c <= '9');
 }

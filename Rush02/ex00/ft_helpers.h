@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_dict.h                                       :+:    :+:            */
+/*   ft_helpers.h                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/25 14:21:17 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/26 13:40:49 by jkoers        ########   odam.nl         */
+/*   Created: 2020/07/25 14:41:23 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/07/26 15:13:09 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_DICT_H
-# define PARSE_DICT_H
+#ifndef FT_HELPERS_H
+# define FT_HELPERS_H
 
-typedef struct	s_name_rule
-{
-	unsigned int	number_length;
-	char			*number;
-	char			*name;
-}				t_name_rule;
-
-t_name_rule		*parse_dict(char *filename, unsigned int *n_rules);
+unsigned int	ft_strlen(char *str);
+void			ft_putstr(char *str);
+char			*ft_strncpy(char *dest, char *src, unsigned int n);
+int				is_number(char c);
 
 #endif

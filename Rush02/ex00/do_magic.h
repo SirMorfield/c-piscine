@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_ft.c                                            :+:    :+:            */
+/*   do_magic.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gvan-wou <marvin@codam.nl>                   +#+                     */
+/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/12 15:20:19 by gvan-wou      #+#    #+#                 */
-/*   Updated: 2020/07/12 15:21:16 by gvan-wou      ########   odam.nl         */
+/*   Created: 2020/07/26 15:30:32 by ngerrets      #+#    #+#                 */
+/*   Updated: 2020/07/26 16:25:50 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(char *s1, char *s2)
-{
-	int var;
-	int var1;
+#ifndef DO_MAGIC_H
+# define DO_MAGIC_H
 
-	while (*s1 == *s2 && *s1 && *s2)
-	{
-		s1++;
-		s2++;
-	}
-	var = (unsigned char)*s1;
-	var1 = (unsigned char)*s2;
-	return (var - var1);
-}
+# include "parse_dict.h"
+
+int		find_and_put(t_name_rule *rules, char *input, int zeros);
+void	do_magic(char *input, t_name_rule *rules);
+
+#endif
