@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/17 17:06:39 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/17 17:30:40 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/28 14:12:04 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,13 @@ int		ft_sqrt(int nb)
 	}
 	return (sqrt);
 }
+
+/*
+** #include <stdio.h>
+**
+** int main()
+** {
+** 	printf("%d", ft_sqrt(25));
+** 	return (0);
+** }
+*/

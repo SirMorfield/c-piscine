@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/20 13:35:33 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/20 13:42:42 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/28 17:24:35 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
-void ft_print_params(int argc, char **argv)
+void	ft_print_params(int argc, char **argv)
 {
 	int i;
 

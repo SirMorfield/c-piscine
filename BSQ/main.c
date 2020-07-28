@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 15:06:10 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/28 01:02:55 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/28 11:19:06 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 
 int		main(int argc, char **argv)
 {
-	char	*filename;
+	char	*filename = NULL;
 	if (argc == 1)
 	{
 		filename = "maps/example_file";
 	}
-	else if (argc == 2)
+	else
 	{
 		filename = argv[1];
 	}
