@@ -6,25 +6,25 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/17 17:06:39 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/28 14:12:04 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/07/29 13:51:12 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_sqrt(int nb)
 {
-	int temp;
-	int sqrt;
+	int i;
 
-	if (nb < 0)
-		return (0);
-	sqrt = nb / 2;
-	temp = 0;
-	while (sqrt != temp)
+	i = 0;
+	if (nb > 0)
 	{
-		temp = sqrt;
-		sqrt = (nb / temp + temp) / 2;
+		while (i < 46432)
+		{
+			if (i * i == nb)
+				return (i);
+			i++;
+		}
 	}
-	return (sqrt);
+	return (0);
 }
 
 /*

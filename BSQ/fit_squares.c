@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:02:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 00:51:00 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/29 13:27:04 by jkoers        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		found_biggest_square(t_workplace *wp)
 	size = wp->x_size < wp->y_size ? wp->x_size : wp->y_size;
 	while (size > 0)
 	{
-		if(contains_valid_location(wp, size))
+		if (contains_valid_location(wp, size))
 			return (1);
 		size--;
 	}
