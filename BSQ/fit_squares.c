@@ -6,19 +6,16 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:02:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 00:51:00 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/03 22:11:14 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define u_int unsigned int
-#include <stdio.h>
 #include "canvas.h"
-#include "matrix_memory.h"
 
-void	set_square(t_workplace *wp, u_int x, u_int y, u_int size)
+void	set_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
 {
-	unsigned int x_i;
-	unsigned int y_i;
+	uint64_t x_i;
+	uint64_t y_i;
 	// wp->biggest_square_x = x;
 	// wp->biggest_square_y = y;
 	// wp->biggest_square_size = size;
@@ -31,17 +28,17 @@ void	set_square(t_workplace *wp, u_int x, u_int y, u_int size)
 		x_i = 0;
 		while (x_i < size)
 		{
-			wp->canvas[y_i + y][x_i + x] = wp->full;
+			wp->map[y_i + y][x_i + x] = wp->full;
 			x_i++;
 		}
 		y_i++;
 	}
 }
 
-int		is_valid_square(t_workplace *wp, u_int x, u_int y, u_int size)
+int		is_valid_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
 {
-	unsigned int x_i;
-	unsigned int y_i;
+	uint64_t x_i;
+	uint64_t y_i;
 
 	y_i = 0;
 	while (y_i < size)
@@ -59,10 +56,10 @@ int		is_valid_square(t_workplace *wp, u_int x, u_int y, u_int size)
 	return (1);
 }
 
-int		contains_valid_location(t_workplace *wp, unsigned int size)
+int		contains_valid_location(t_wp *wp, uint64_t size)
 {
-	unsigned int x;
-	unsigned int y;
+	uint64_t x;
+	uint64_t y;
 
 	x = 0;
 	while (x <= (wp->x_size - size))
@@ -82,9 +79,9 @@ int		contains_valid_location(t_workplace *wp, unsigned int size)
 	return (0);
 }
 
-int		found_biggest_square(t_workplace *wp)
+int		found_biggest_square(t_wp *wp)
 {
-	unsigned int size;
+	uint64_t size;
 
 	size = wp->x_size < wp->y_size ? wp->x_size : wp->y_size;
 	while (size > 0)

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fit_squares.h                                      :+:    :+:            */
+/*   test.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 23:40:51 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 22:21:12 by joppe         ########   odam.nl         */
+/*   Created: 2020/08/02 22:53:24 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/02 23:33:41 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIT_SQUARES
-# define FIT_SQUARES
-# include "canvas.h"
-# include <stdint-gcc.h>
+#include "helpers/ft_file.h"
+#include <stdio.h>
 
-int		found_biggest_square(t_wp *wp);
+int		main(void)
+{
+	char	*buf;
 
-#endif
+	buf = ft_read_file("result.txt");
+
+	printf(">%s<\n", buf);
+	return (0);
+}

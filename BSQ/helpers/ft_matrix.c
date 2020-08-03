@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   matrix_memory.c                                    :+:    :+:            */
+/*   ft_matrix.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 21:01:20 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/27 22:37:06 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/03 22:58:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
-#include "matrix_memory.h"
+#include <stdlib.h>
+#include "ft_matrix.h"
+#include <stdint-gcc.h>
 
-void	free_matrix(void **matrix, unsigned int y_size)
+void	free_matrix(char **matrix, uint64_t y_size)
 {
+	if (matrix == NULL)
+		return ;
 	while (y_size > 0)
 	{
 		y_size--;
-	 	free(matrix[y_size]);
+		if (matrix[y_size] != NULL)
+			free(matrix[y_size]);
 	}
 	free(matrix);
 }
 
-char	**malloc_matrix(unsigned int x_size, unsigned int y_size)
+char	**malloc_matrix(uint64_t x_size, uint64_t y_size)
 {
 	char **result;
 
@@ -37,14 +41,16 @@ char	**malloc_matrix(unsigned int x_size, unsigned int y_size)
 	return (result);
 }
 
-void	write_matrix(int fd, char **grid, unsigned int x_si, unsigned int y_si)
+void	write_matrix(int fd, char **grid, uint64_t x_size, uint64_t y_size)
 {
-	unsigned int y_i;
+	uint64_t y_i;
 
 	y_i = 0;
-	while (y_i < y_si)
+	while (y_i < y_size)
 	{
-		write(fd, grid[y_i], x_si);
+		// write(fd, "<", 1);
+		write(fd, grid[y_i], x_size);
+		// write(fd, ">", 1);
 		write(fd, "\n", 1);
 		y_i++;
 	}

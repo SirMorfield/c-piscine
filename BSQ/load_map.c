@@ -11,51 +11,46 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include <fcntl.h>
-#include "ft_helpers.h"
-#include "matrix_memory.h"
+#include "load_map.h"
+#include "helpers/ft_matrix.h"
+#include "helpers/ft_str.h"
+#include "helpers/ft_int.h"
 
-void	read_until_newline(int fd)
+int	is_valid_legend(t_wp *wp)
 {
-	char tmp;
+	uint64_t	i;
+	char		buf[4];
 
-	read(fd, &tmp, 1);
-	while (tmp != '\n')
-		read(fd, &tmp, 1);
-}
-
-void	get_legend(char *filename, char *empty, char *obstacle, char *full)
-{
-	int				fd;
-	char			buf[420];
-	unsigned int	i;
-
-	fd = open(filename, O_RDONLY);
-	read(fd, buf, 420);
 	i = 0;
-	while (buf[i] != '\n')
+	while (wp->map_file[i] != '\n')
 		i++;
-	*empty = buf[i - 3];
-	*obstacle = buf[i - 2];
-	*full = buf[i - 1];
-	close(fd);
+	if (i <= 3 || wp->map_file[i + 1] == '\n')
+		return (0);
+	buf[0] = wp->map_file[i - 3];
+	buf[1] = wp->map_file[i - 2];
+	buf[2] = wp->map_file[i - 1];
+	buf[3] = '\0';
+	if (ft_contains_duplicates(buf))
+		return (0);
+	wp->empty = buf[0];
+	wp->obstacle = buf[1];
+	wp->full = buf[2];
+	return (1);
 }
 
-void	get_size(char *filename, unsigned int *x_size, unsigned int *y_size)
+int	is_valid_x_size(t_wp *wp)
 {
-	int				fd;
-	unsigned int	i;
 	int				start;
-	char			buf[420000];
+	unsigned int	i;
+	unsigned int	size;
 
-	fd = open(filename, O_RDONLY);
 	i = 0;
 	start = -1;
-	read(fd, buf, 420000);
-	*y_size = (unsigned int)ft_atoi(buf);
 	while (1)
 	{
-		if (buf[i] == '\n')
+		if (wp->map_file[i] == '\n')
 		{
 			if (start == -1)
 				start = i;
@@ -64,29 +59,51 @@ void	get_size(char *filename, unsigned int *x_size, unsigned int *y_size)
 		}
 		i++;
 	}
-	*x_size = ((int)i - start) - 1;
-	close(fd);
+	size = (i - start) - 1;
+	if (size == 0)
+		return (0);
+	wp->x_size = size;
+	return (1);
 }
 
-char	**load_map(char *filename)
+int	is_valid_y_size(t_wp *wp)
 {
-	unsigned int	i;
-	int				fd;
-	unsigned int	x_size;
-	unsigned int	y_size;
-	char			**result;
+	uint64_t			i;
+	int					y_size;
+	const unsigned int	buf_size = 20;
+	char				buf[buf_size + 1];
 
 	i = 0;
-	fd = open(filename, O_RDONLY);
-	get_size(filename, &x_size, &y_size);
-	result = malloc_matrix(x_size, y_size);
-	read_until_newline(fd);
-	while (i < y_size)
+	while (ft_is_digit(wp->map_file[i]) && i < buf_size)
 	{
-		read(fd, result[i], x_size);
-		read_until_newline(fd);
+		buf[i] = wp->map_file[i];
 		i++;
 	}
-	close(fd);
-	return (result);
+	if (i == 0 || i == buf_size - 1)
+		return (0);
+	buf[i] = '\0';
+	y_size = ft_atoi(buf);
+	if (y_size <= 0)
+		return (0);
+	wp->y_size = (uint64_t)y_size;
+	return (1);
+}
+
+int is_valid_map(t_wp *wp)
+{
+	uint64_t	map_i;
+	uint64_t	matrix_y;
+
+	wp->map = malloc(wp->y_size * sizeof(char*));
+	map_i = 0;
+	while (wp->map_file[map_i] != '\n')
+		map_i++;
+	map_i += 1;
+	while (matrix_y < wp->y_size)
+	{
+		wp->map[matrix_y] = wp->map_file + map_i;
+		map_i += wp->x_size + 1;
+		matrix_y++;
+	}
+	return (1);
 }

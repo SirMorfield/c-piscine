@@ -6,50 +6,82 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 22:37:44 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/27 23:07:16 by joppe         ########   odam.nl         */
+/*   Updated: 2020/07/28 22:46:27 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-void	apply_obstacle_locations(t_workplace *wp)
+uint16_t	n_occurrences(char *str, uint16_t strlen, char c)
 {
-	unsigned int x;
-	unsigned int y;
-	unsigned int i;
+	uint16_t occurrences;
 
-	i = 0;
+	occurrences = 0;
+	while (strlen > 0)
+	{
+		strlen--;
+		if(str[strlen] == c)
+			occurrences++;
+	}
+	return (occurrences);
+}
+
+void		set_obstacle_locations(t_wp *wp)
+{
+	uint16_t x;
+	uint16_t y;
+	uint16_t occurrences_i;
+	uint16_t occurrences;
+
+	wp->obstacles = malloc(wp->y_size * sizeof(int16_t*));
+	y = 0;
 	while (y < wp->y_size)
 	{
+		occurrences = n_occurrences(wp->map[y], wp->x_size, wp->obstacle);
+		wp->obstacles[y] = malloc((occurrences + 1) * sizeof(int16_t));
+		wp->obstacles[y][occurrences] = -1;
+		occurrences_i = 0;
+		x = 0;
+		// printf(">");
 		while (x < wp->x_size)
 		{
-			if (wp->canvas[y][x] == wp->obstacle)
+			if (wp->map[y][x] == wp->obstacle)
 			{
-				wp->obstacle_x_locations[i] = x;
-				wp->obstacle_y_locations[i] = y;
-				i++;
+				wp->obstacles[y][occurrences_i] = (int16_t)x;
+				// printf("%u ", x);
+				occurrences_i++;
 			}
-			x++
+			x++;
 		}
+		// printf("\n");
 		y++;
 	}
 }
 
-void 	set_obstacle_locations(t_workplace *wp)
+int			is_valid_square2(t_wp *wp, uint16_t x, uint16_t y, uint16_t size)
 {
-	unsigned int x;
-	unsigned int y;
+	uint16_t max_x;
+	uint16_t max_y;
+	uint16_t y_i;
+	uint16_t i;
 
-	wp->n_obstacles = 0;
-	while (y < wp->y_size)
+	max_x = (x + size) - 1;
+	max_y = y + size;
+	y_i = y;
+	while (y_i < max_y)
 	{
-		while (x < wp->x_size)
+		i = 0;
+		while (wp->obstacles[y_i][i] != -1)
 		{
-			if (wp->canvas[y][x] == wp->obstacle)
-				wp->n_obstacles += 1;
+			if (wp->obstacles[y_i][i] > max_x)
+				break ;
+			if (wp->obstacles[y_i][i] >= x)
+				return (0);
+			i++;
 		}
+		y_i++;
 	}
-	wp->obstacle_x_locations = malloc(wp->n_obstacles * sizeof(unsigned int));
-	wp->obstacle_y_locations = malloc(wp->n_obstacles * sizeof(unsigned int));
-	apply_obstacle_locations(wp);
+	return (1);
 }

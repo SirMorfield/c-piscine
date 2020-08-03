@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fit_squares.h                                      :+:    :+:            */
+/*   ft_str.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 23:40:51 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 22:21:12 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/29 19:34:13 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/01 17:11:16 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIT_SQUARES
-# define FIT_SQUARES
-# include "canvas.h"
-# include <stdint-gcc.h>
+#include <unistd.h>
+#include "ft_str.h"
 
-int		found_biggest_square(t_wp *wp);
+void	ft_putstr(char *str)
+{
+	while (*str != '\0')
+	{
+		write(1, str, 1);
+		str++;
+	}
+}
 
-#endif
+char	*ft_strncpy(char *dest, char *src, uint64_t n)
+{
+	uint64_t i;
+
+	i = 0;
+	while (i < n)
+	{
+		dest[i] = src[i];
+		if (src[i] == '\0')
+			break ;
+		i++;
+	}
+	return (dest + i);
+}

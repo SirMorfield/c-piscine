@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fit_squares.h                                      :+:    :+:            */
+/*   is_valid_map.h                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 23:40:51 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 22:21:12 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/29 14:11:04 by joppe         #+#    #+#                 */
+/*   Updated: 2020/07/29 15:05:43 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIT_SQUARES
-# define FIT_SQUARES
-# include "canvas.h"
-# include <stdint-gcc.h>
+#ifndef IS_VALID_MAP_H
+# define IS_VALID_MAP_H
 
-int		found_biggest_square(t_wp *wp);
 
 #endif

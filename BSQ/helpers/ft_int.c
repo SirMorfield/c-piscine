@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_helpers.c                                       :+:    :+:            */
+/*   ft_int.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
+/*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 14:48:40 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/27 21:02:55 by joppe         ########   odam.nl         */
+/*   Created: 2020/08/03 22:27:15 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/03 22:28:56 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_helpers.h"
-
-int		ft_is_space(char c)
-{
-	char *spaces;
-
-	spaces = "\t\n\v\f\r ";
-	while (*spaces != '\0')
-	{
-		if (c == *spaces)
-			return (1);
-		spaces++;
-	}
-	return (0);
-}
-
-int		ft_is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
+#include "ft_str.h"
 
 int		ft_atoi(char *str)
 {
-	long			result;
-	int				multiplier;
+	long	result;
+	int		multiplier;
 
 	result = 0;
 	multiplier = 1;

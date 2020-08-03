@@ -6,45 +6,27 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 15:06:10 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/28 11:19:06 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/08/03 22:32:03 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdio.h>
 #include "canvas.h"
-#include "fit_squares.h"
-#include "load_map.h"
-#include "matrix_memory.h"
+#include "helpers/ft_str.h"
 
 int		main(int argc, char **argv)
 {
-	char	*filename = NULL;
-	if (argc == 1)
-	{
-		filename = "maps/example_file";
-	}
-	else
-	{
-		filename = argv[1];
-	}
+	char	*filename;
 
-	t_workplace wp;
-	prepare_workplace(&wp, filename);
-	printf("empty    <%c>\n", wp.empty);
-	printf("obstacle <%c>\n", wp.obstacle);
-	printf("full     <%c>\n", wp.full);
-	printf("x_size    %d\n", wp.x_size);
-	printf("y_size    %d\n", wp.y_size);
-	// write_matrix(1, wp.map, wp.x_size, wp.y_size);
-	if (found_biggest_square(&wp))
+	t_wp wp;
+	filename = "maps/example_file";
+	if (!is_valid_workplace(filename, &wp))
 	{
-		printf("\n");
-		write_matrix(1, wp.canvas, wp.x_size, wp.y_size);
+		ft_putstr("map error\n");
 	}
-	else
-	{
-		printf("not found\n");
-	}
+	(void)argc;
+	(void)argv;
+	dealloc_workplace(&wp);
 	return (0);
 }

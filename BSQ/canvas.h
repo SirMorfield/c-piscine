@@ -6,30 +6,25 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 22:58:54 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/27 23:56:05 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/03 22:44:11 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CANVAS_H
 # define CANVAS_H
+# include <stdint-gcc.h>
 
 typedef struct		s_workplace
 {
-	unsigned int		x_size;
-	unsigned int		y_size;
-	// unsigned int	*obstacle_x_locations;
-	// unsigned int	*obstacle_y_locations;
-	// int				n_obstacles;
-	char				empty;
-	char				obstacle;
-	char				full;
-	char				**map;
-	char				**canvas;
-	// unsigned int		biggest_square_x;
-	// unsigned int		biggest_square_y;
-	// unsigned int		biggest_square_size;
-}					t_workplace;
-void				prepare_workplace(t_workplace *wp, char *filename);
-
+	char			*map_file;
+	uint64_t		x_size;
+	uint64_t		y_size;
+	char			empty;
+	char			obstacle;
+	char			full;
+	char			**map;
+}					t_wp;
+void	dealloc_workplace(t_wp *wp);
+int		is_valid_workplace(char *filename, t_wp *wp);
 
 #endif

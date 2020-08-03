@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fit_squares.h                                      :+:    :+:            */
+/*   ft_helpers2.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 23:40:51 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 22:21:12 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/29 19:36:15 by joppe         #+#    #+#                 */
+/*   Updated: 2020/07/31 23:01:42 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIT_SQUARES
-# define FIT_SQUARES
-# include "canvas.h"
-# include <stdint-gcc.h>
+#ifndef FT_HELPERS2_H
+# define FT_HELPERS2_H
 
-int		found_biggest_square(t_wp *wp);
+int		ft_contains_duplicates(char *str);
+int		ft_contains(char c, char *str);
+void	ft_putstr(char *str);
+int		ft_str_is_printable(char *str);
+char	*ft_strncpy(char *dest, char *src, unsigned int n);
 
 #endif

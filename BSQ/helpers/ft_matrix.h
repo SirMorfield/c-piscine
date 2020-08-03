@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fit_squares.h                                      :+:    :+:            */
+/*   ft_matrix.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/27 23:40:51 by joppe         #+#    #+#                 */
-/*   Updated: 2020/07/28 22:21:12 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/27 21:00:37 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/03 21:58:35 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIT_SQUARES
-# define FIT_SQUARES
-# include "canvas.h"
+#ifndef FT_MATRIX_H
+# define FT_MATRIX_H
 # include <stdint-gcc.h>
 
-int		found_biggest_square(t_wp *wp);
+void	free_matrix(char **matrix, uint64_t y_size);
+char	**malloc_matrix(uint64_t x_size, uint64_t y_size);
+void	write_matrix(int fd, char **grid, uint64_t x_size, uint64_t y_size);
 
 #endif

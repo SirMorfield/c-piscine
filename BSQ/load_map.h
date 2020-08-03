@@ -12,9 +12,12 @@
 
 #ifndef GRID_H
 # define GRID_H
+# include <stdint-gcc.h>
+# include "canvas.h"
 
-void	get_legend(char *filename, char *empty, char *obstacle, char *full);
-void	get_size(char *filename, unsigned int *x_size, unsigned int *y_size);
-char	**load_map(char *filename);
+int	is_valid_legend(t_wp *wp);
+int	is_valid_x_size(t_wp *wp);
+int	is_valid_y_size(t_wp *wp);
+int is_valid_map(t_wp *wp);
 
 #endif
