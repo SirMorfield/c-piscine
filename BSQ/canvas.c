@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:43:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/03 22:56:13 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/04 12:26:55 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int		is_valid_workplace(char *filename, t_wp *wp)
 		ft_putstr("no square found\n");
 		error = 1;
 	}
-	if (!error)
-	{
-		write_matrix(1, wp->map, wp->x_size, wp->y_size);
-	}
+	// if (!error)
+	// {
+	// 	write_matrix(1, wp->map, wp->x_size, wp->y_size);
+	// }
 	// dealloc_workplace(wp);
 	return (1);
 }

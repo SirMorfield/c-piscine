@@ -6,22 +6,20 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:02:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/03 22:11:14 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/04 12:38:53 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "canvas.h"
 
 void	set_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
 {
 	uint64_t x_i;
 	uint64_t y_i;
-	// wp->biggest_square_x = x;
-	// wp->biggest_square_y = y;
-	// wp->biggest_square_size = size;
-	// printf("x %u\n",x);
-	// printf("y %u\n",y);
-	// printf("s %u\n",size);
+	printf(">x %lu\n", x);
+	printf(">y %lu\n", y);
+	printf(">s %lu\n", size);
 	y_i = 0;
 	while (y_i < size)
 	{
@@ -35,23 +33,31 @@ void	set_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
 	}
 }
 
-int		is_valid_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
+int		is_valid_square(t_wp *wp, uint64_t *x, uint64_t *y, uint64_t size)
 {
-	uint64_t x_i;
-	uint64_t y_i;
+	int64_t x_cpy;
+	int64_t y_cpy;
+	int64_t max_x;
+	int64_t max_y;
 
-	y_i = 0;
-	while (y_i < size)
+	y_cpy = *y;
+	x_cpy = *x;
+	max_y = *y + size;
+	while (y_cpy < max_y)
 	{
-		x_i = 0;
-		while (x_i < size)
+		max_x = (*x + size) - 1;
+		while (max_x >= x_cpy)
 		{
+			// printf("max_x %lu\n", max_x);
 			// printf("<%c>\n", wp->map[y_i + y][x_i + x]);
-			if (wp->map[y_i + y][x_i + x] == wp->obstacle)
+			if (wp->map[y_cpy][max_x] == wp->obstacle)
+			{
+				*x = max_x;
 				return (0);
-			x_i++;
+			}
+			max_x--;
 		}
-		y_i++;
+		y_cpy++;
 	}
 	return (1);
 }
@@ -61,20 +67,23 @@ int		contains_valid_location(t_wp *wp, uint64_t size)
 	uint64_t x;
 	uint64_t y;
 
-	x = 0;
-	while (x <= (wp->x_size - size))
+	y = 0;
+	while (y <= (wp->y_size - size))
 	{
-		y = 0;
-		while (y <= (wp->y_size - size))
+		x = 0;
+		while (x <= (wp->x_size - size))
 		{
-			if (is_valid_square(wp, x, y, size))
+			// printf("a %lu %lu %lu\n", x, y, size);
+			if (is_valid_square(wp, &x, &y, size))
 			{
 				set_square(wp, x, y, size);
 				return (1);
 			}
-			y++;
+			// printf("b %lu %lu %lu\n", x, y, size);
+			x++;
 		}
-		x++;
+		// printf("\n");
+		y++;
 	}
 	return (0);
 }
@@ -84,7 +93,7 @@ int		found_biggest_square(t_wp *wp)
 	uint64_t size;
 
 	size = wp->x_size < wp->y_size ? wp->x_size : wp->y_size;
-	while (size > 0)
+	while (size >= 1)
 	{
 		if(contains_valid_location(wp, size))
 			return (1);
