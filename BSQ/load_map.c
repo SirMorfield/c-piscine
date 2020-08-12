@@ -17,6 +17,7 @@
 #include "helpers/ft_matrix.h"
 #include "helpers/ft_str.h"
 #include "helpers/ft_int.h"
+#include "stdio.h"
 
 int	is_valid_legend(t_wp *wp)
 {
@@ -68,10 +69,10 @@ int	is_valid_x_size(t_wp *wp)
 
 int	is_valid_y_size(t_wp *wp)
 {
-	uint64_t			i;
-	int					y_size;
-	const unsigned int	buf_size = 20;
-	char				buf[buf_size + 1];
+	uint64_t		i;
+	int				y_size;
+	const uint64_t	buf_size = 20;
+	char			buf[buf_size + 1];
 
 	i = 0;
 	while (ft_is_digit(wp->map_file[i]) && i < buf_size)
@@ -99,6 +100,7 @@ int is_valid_map(t_wp *wp)
 	while (wp->map_file[map_i] != '\n')
 		map_i++;
 	map_i += 1;
+	matrix_y = 0;
 	while (matrix_y < wp->y_size)
 	{
 		wp->map[matrix_y] = wp->map_file + map_i;

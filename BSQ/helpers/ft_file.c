@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/29 15:13:01 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/03 22:29:12 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/13 01:00:17 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*read_until_end(int fd, const int block_size)
 
 char	*ft_read_file(char *filename)
 {
-	const int	block_size = 32768;
+	const int	block_size = 327680;
 	int 		fd;
 	char		*buf;
 
