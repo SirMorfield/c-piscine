@@ -6,12 +6,13 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:02:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/04 12:38:53 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/12 16:47:31 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "canvas.h"
+#include "get_max_square_size.h"
 
 void	set_square(t_wp *wp, uint64_t x, uint64_t y, uint64_t size)
 {
@@ -62,12 +63,10 @@ int		is_valid_square(t_wp *wp, uint64_t *x, uint64_t *y, uint64_t size)
 	return (1);
 }
 
-int		contains_valid_location(t_wp *wp, uint64_t size)
+int		contains_valid_location(t_wp *wp, uint64_t y, uint64_t size)
 {
 	uint64_t x;
-	uint64_t y;
 
-	y = 0;
 	while (y <= (wp->y_size - size))
 	{
 		x = 0;
@@ -91,12 +90,16 @@ int		contains_valid_location(t_wp *wp, uint64_t size)
 int		found_biggest_square(t_wp *wp)
 {
 	uint64_t size;
+	uint64_t y;
 
+	y = 0;
+	// size = get_max_square_size(wp, &y);
 	size = wp->x_size < wp->y_size ? wp->x_size : wp->y_size;
 	while (size >= 1)
 	{
-		if (contains_valid_location(wp, size))
+		if (contains_valid_location(wp, y, size))
 			return (1);
+		y = 0;
 		size--;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 15:06:10 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/08/03 23:14:44 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/12 16:43:39 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int		main(int argc, char **argv)
 	{
 		ft_putstr("map error\n");
 	}
-	(void)argc;
-	(void)argv;
 	dealloc_workplace(&wp);
 	return (0);
 }
