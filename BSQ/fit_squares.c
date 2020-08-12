@@ -95,7 +95,7 @@ int		found_biggest_square(t_wp *wp)
 	size = wp->x_size < wp->y_size ? wp->x_size : wp->y_size;
 	while (size >= 1)
 	{
-		if(contains_valid_location(wp, size))
+		if (contains_valid_location(wp, size))
 			return (1);
 		size--;
 	}

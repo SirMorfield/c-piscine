@@ -52,7 +52,6 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
 		res[1] = -1;
 		return (res);
 	}
-
     res[1] = last(nums, target, numsSize);
     return (res);
 }
