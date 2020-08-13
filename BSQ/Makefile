@@ -6,7 +6,7 @@
 #    By: jkoers <jkoers@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/24 14:54:00 by jkoers        #+#    #+#                  #
-#    Updated: 2020/07/31 23:26:15 by joppe         ########   odam.nl          #
+#    Updated: 2020/08/13 22:40:23 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,11 +67,13 @@ SRCS = *.c helpers/*.c
 HEADERS = *.h helpers/*.h
 OBJECTS = *.o
 
+DEBUG = -O0 -g -fsanitize=address
+
 
 $(NAME): all
 
 all: $(HEADERS) $(SRCS)
-	$(CC) -o $(NAME) $(CFLAGS) $(SRCS)
+	$(CC) -o $(DEBUG) $(NAME) $(CFLAGS) $(SRCS)
 
 clean:
 	/bin/rm -f $(OBJECTS)
