@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_str.h                                           :+:    :+:            */
+/*   ft_matrix.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/08/01 17:09:55 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/13 22:34:51 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/27 21:00:37 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/23 22:41:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STR_H
-# define FT_STR_H
-# include <stdint-gcc.h>
-# include <stdbool.h>
+#ifndef FT_MATRIX_H
+# define FT_MATRIX_H
+#include "types.h"
 
-void	ft_putstr(char *str);
-char	*ft_strncpy(char *dest, char *src, uint64_t n);
-uint8_t	ft_contains_duplicates(char *str);
-uint8_t	ft_contains(char c, char *str);
-uint8_t	ft_is_space(char c);
-uint8_t	ft_is_digit(char c);
-bool	ft_is_printable(char c);
+void	free_matrix(char **matrix, uint64_t y_size);
+char	**malloc_matrix(uint64_t x_size, uint64_t y_size);
+void	write_matrix(int fd, char **grid, uint64_t x_size, uint64_t y_size);
 
 #endif

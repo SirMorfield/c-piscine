@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/27 23:02:06 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/13 01:08:15 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/13 22:26:19 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int		is_valid_square(t_wp *wp, uint64_t *x, uint64_t *y, uint64_t size)
 	int64_t max_x;
 	int64_t max_y;
 
-	y_cpy = *y;
 	x_cpy = *x;
 	max_y = *y + size;
-	while (y_cpy < max_y)
+	max_x = (*x + size) - 1;
+	while (max_x >= x_cpy)
 	{
-		max_x = (*x + size) - 1;
-		while (max_x >= x_cpy)
+		y_cpy = *y;
+		while (y_cpy < max_y)
 		{
 			// printf("max_x %lu\n", max_x);
 			// printf("<%c>\n", wp->map[y_i + y][x_i + x]);
@@ -59,9 +59,9 @@ int		is_valid_square(t_wp *wp, uint64_t *x, uint64_t *y, uint64_t size)
 				*x = max_x;
 				return (0);
 			}
-			max_x--;
+			y_cpy++;
 		}
-		y_cpy++;
+		max_x--;
 	}
 	return (1);
 }

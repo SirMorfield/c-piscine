@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_str.h                                           :+:    :+:            */
+/*   ft_int.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/08/01 17:09:55 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/13 22:34:51 by joppe         ########   odam.nl         */
+/*   Created: 2020/08/03 22:27:29 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/13 00:37:43 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STR_H
-# define FT_STR_H
-# include <stdint-gcc.h>
-# include <stdbool.h>
+#ifndef FT_INT_H
+# define FT_INT_H
 
-void	ft_putstr(char *str);
-char	*ft_strncpy(char *dest, char *src, uint64_t n);
-uint8_t	ft_contains_duplicates(char *str);
-uint8_t	ft_contains(char c, char *str);
-uint8_t	ft_is_space(char c);
-uint8_t	ft_is_digit(char c);
-bool	ft_is_printable(char c);
+int		ft_atoi(char *str);
 
 #endif

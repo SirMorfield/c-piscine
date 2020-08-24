@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/29 15:13:01 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/13 01:00:17 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/23 23:00:19 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <fcntl.h>
 #include "ft_file.h"
 #include "ft_memory.h"
-#include "ft_str.h"
-#include <stdint-gcc.h>
+#include "ft_string.h"
+#include "types.h"
 
 char	*read_until_end(int fd, const int block_size)
 {
@@ -40,7 +40,7 @@ char	*read_until_end(int fd, const int block_size)
 			break ;
 		}
 		total_read += bytes_read;
-	} 
+	}
 	if (buf != NULL)
 		buf[total_read] = '\0';
 	return (buf);

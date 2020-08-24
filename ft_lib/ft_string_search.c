@@ -1,26 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_str.h                                           :+:    :+:            */
+/*   ft_str_search.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/08/01 17:09:55 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/13 22:34:51 by joppe         ########   odam.nl         */
+/*   Created: 2020/08/01 17:11:23 by joppe         #+#    #+#                 */
+/*   Updated: 2020/08/23 23:00:42 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STR_H
-# define FT_STR_H
-# include <stdint-gcc.h>
-# include <stdbool.h>
+#include "types.h"
+#include "ft_string.h"
 
-void	ft_putstr(char *str);
-char	*ft_strncpy(char *dest, char *src, uint64_t n);
-uint8_t	ft_contains_duplicates(char *str);
-uint8_t	ft_contains(char c, char *str);
-uint8_t	ft_is_space(char c);
-uint8_t	ft_is_digit(char c);
-bool	ft_is_printable(char c);
+bool	ft_contains_duplicates(char *str)
+{
+	uint64_t i;
+	uint64_t j;
 
-#endif
+	i = 0;
+	while (str[i] != '\0')
+	{
+		j = i + 1;
+		while (str[j] != '\0')
+		{
+			if (str[i] == str[j])
+				return (true);
+			j++;
+		}
+		i++;
+	}
+	return (false);
+}
+
+bool	ft_contains(char c, char *str)
+{
+	while (*str != '\0')
+	{
+		if (*str == c)
+			return (true);
+		str++;
+	}
+	return (true);
+}
