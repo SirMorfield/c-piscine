@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/01 17:09:55 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/24 14:57:47 by joppe         ########   odam.nl         */
+/*   Updated: 2020/08/24 19:25:10 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char		*ft_strncpy(char *dest, char *src, uint64_t n);
 char		*ft_strcat(char *dest, char *src);
 char		*ft_strncat(char *dest, char *src, unsigned int nb);
 
-int			ft_strcmp(char *s1, char *s2);
-int			ft_strncmp(char *s1, char *s2, unsigned int n);
+int8_t		ft_strcmp(char *s1, char *s2);
+int8_t		ft_strncmp(char *s1, char *s2, uint64_t n);
 
 bool		ft_contains_duplicates(char *str);
 bool		ft_contains(char c, char *str);
