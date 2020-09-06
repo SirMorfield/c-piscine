@@ -6,12 +6,13 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/03 22:27:15 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/23 23:00:19 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/07 01:46:44 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "ft_memory.c"
+#include "ft_memory.h"
+#include <stdlib.h>
 
 uint64_t	ft_str_to_ui(char *str)
 {
@@ -35,7 +36,7 @@ uint64_t	ft_str_to_ui(char *str)
 	return (result);
 }
 
-int64_t	ft_str_to_i(char *str)
+int64_t		ft_str_to_i(char *str)
 {
 	int64_t	result;
 	bool	is_negative;

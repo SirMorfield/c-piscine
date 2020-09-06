@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/01 13:48:36 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/23 23:12:21 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/07 01:46:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	*ft_realloc(void *ptr, uint64_t orig_len, uint64_t new_len)
 		return (NULL);
 	}
    	else if (!ptr)
-		return malloc(new_len);
+		return (malloc(new_len));
+	else if (orig_len == new_len)
+		return (ptr);
 	else
    	{
 		new_ptr = malloc(new_len);
@@ -52,6 +54,7 @@ void	*ft_realloc(void *ptr, uint64_t orig_len, uint64_t new_len)
 		}
 		return (new_ptr);
 	}
+
 }
 
 void	ft_memset(void *s, uint8_t c, uint64_t n)
