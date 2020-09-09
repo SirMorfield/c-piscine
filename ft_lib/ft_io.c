@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/15 22:48:23 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/05 00:44:20 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/07 02:18:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,25 @@ void	write_uint64_arr(int32_t fd, uint64_t *arr, uint64_t len)
 	while (i < len)
 	{
 		str = ui_to_str(arr[i]);
+		write_str(fd, str);
+		free(str);
+		if (i != len - 1)
+			write_str(fd, ", ");
+		i++;
+	}
+	write_str(fd, "}\n");
+}
+
+void	write_int64_arr(int32_t fd, int64_t *arr, uint64_t len)
+{
+	uint64_t	i;
+	char		*str;
+
+	i = 0;
+	write_str(fd, "{");
+	while (i < len)
+	{
+		str = i_to_str(arr[i]);
 		write_str(fd, str);
 		free(str);
 		if (i != len - 1)

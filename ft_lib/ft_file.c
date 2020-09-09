@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/29 15:13:01 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/23 23:00:19 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/09 17:21:48 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 #include "ft_string.h"
 #include "types.h"
 
-char	*read_until_end(int fd, const int block_size)
+char	*read_until_end(int32_t fd, uint64_t block_size)
 {
-	int		bytes_read;
-	int64_t	total_read;
-	char	*buf;
+	int64_t		bytes_read;
+	uint64_t	total_read;
+	char		*buf;
 
 	buf = NULL;
 	bytes_read = block_size;
 	total_read = 0;
-	while (bytes_read == block_size)
+	while (bytes_read == (int64_t)block_size)
 	{
+		block_size *= 2;
 		buf = ft_realloc(buf, total_read, (total_read + block_size + 1) * sizeof(char));
 		if (buf == NULL)
 			break ;
@@ -36,20 +37,18 @@ char	*read_until_end(int fd, const int block_size)
 		if (bytes_read == -1)
 		{
 			free(buf);
-			buf = NULL;
-			break ;
+			return (NULL);
 		}
 		total_read += bytes_read;
 	}
-	if (buf != NULL)
-		buf[total_read] = '\0';
+	buf[total_read] = '\0';
 	return (buf);
 }
 
 char	*ft_read_file(char *filename)
 {
-	const int	block_size = 327680;
-	int 		fd;
+	uint64_t	block_size = 4096;
+	int32_t 	fd;
 	char		*buf;
 
 	fd = open(filename, O_RDONLY);
@@ -58,4 +57,17 @@ char	*ft_read_file(char *filename)
 	buf = read_until_end(fd, block_size);
 	close(fd);
 	return (buf);
+}
+
+char	**ft_file_split(char *filename, char *seperator)
+{
+	char	*file;
+	char	**split;
+
+	file = ft_read_file(filename);
+	if (file == NULL)
+		return (NULL);
+	split = ft_split(file, seperator);
+	free(file);
+	return (split);
 }

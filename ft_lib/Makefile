@@ -6,12 +6,12 @@
 #    By: joppe <joppe@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/08/23 17:53:14 by joppe         #+#    #+#                  #
-#    Updated: 2020/08/24 14:54:38 by joppe         ########   odam.nl          #
+#    Updated: 2020/09/09 17:42:06 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME      	:= program
+NAME      	:= libft
 
 CC          := gcc
 CFLAGS      := -Wall -Wextra -Werror
@@ -27,7 +27,7 @@ OBJECTS     := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJE
 $(NAME): all
 
 all: directories $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+	$(CC) -shared -o $(BUILDDIR)/$(NAME).so $(OBJECTS) -lm
 
 clean:
 	/bin/rm -f $(BUILDDIR)/*
@@ -39,6 +39,5 @@ re: fclean all
 
 directories:
 	@mkdir -p $(BUILDDIR)
-# @echo "Compiling: $< -> $@"
 $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
 	$(CC) $(CFLAGS) -c $< -o $@
