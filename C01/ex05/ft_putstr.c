@@ -6,7 +6,7 @@
 /*   By: jkoers <jkoers@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/12 11:25:44 by jkoers        #+#    #+#                 */
-/*   Updated: 2020/07/13 14:11:05 by jkoers        ########   odam.nl         */
+/*   Updated: 2020/09/11 00:15:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_putstr(char *str)
 {
-	unsigned long i;
-
-	i = 0;
-	while (str[i] != '\0')
+	while (*str != '\0')
 	{
-		write(1, str + i, 1);
-		i++;
+		write(1, str, 1);
+		str++;
 	}
 }

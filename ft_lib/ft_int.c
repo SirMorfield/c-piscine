@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/03 22:27:15 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/07 14:33:39 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/11 15:10:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int64_t		ft_str_to_i(char *str)
 	return (is_negative ? result : -result);
 }
 
-#include <stdio.h>
 char	*i_to_str(int64_t n)
 {
 	char	*res;
@@ -84,7 +83,6 @@ char	*i_to_str(int64_t n)
 	}
 	if (is_negative)
 	{
-		printf("yte\n");
 		res[i] = '-';
 		i++;
 	}

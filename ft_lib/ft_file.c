@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/29 15:13:01 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/09 17:21:48 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/10 23:13:29 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_read_file(char *filename)
 	return (buf);
 }
 
-char	**ft_file_split(char *filename, char *seperator)
+char	**ft_split_file(char *filename, char *seperator)
 {
 	char	*file;
 	char	**split;

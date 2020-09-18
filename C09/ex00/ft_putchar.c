@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_file.h                                          :+:    :+:            */
+/*   ft_putchar.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: joppe <joppe@student.codam.nl>               +#+                     */
+/*   By: jkoers <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/29 15:11:57 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/10 23:13:41 by joppe         ########   odam.nl         */
+/*   Created: 2020/07/09 13:07:29 by jkoers        #+#    #+#                 */
+/*   Updated: 2020/09/10 23:43:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILE_H
-# define FT_FILE_H
+#include <unistd.h>
 
-char	*ft_read_file(char *filename);
-char	**ft_split_file(char *filename, char *seperator);
-
-#endif
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}

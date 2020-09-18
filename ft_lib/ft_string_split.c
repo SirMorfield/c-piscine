@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/31 01:39:54 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/05 00:50:29 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/11 15:43:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,60 +67,3 @@ char		**ft_split(char *str, char *charset)
 	arr[i] = NULL;
 	return (arr);
 }
-
-// int main(int arc, char **argv)
-// {
-// 	char *test[] = {
-// 		// "",
-
-// 		",",
-// 		",,",
-// 		",,,,,,,,",
-
-// 		"a,",
-// 		"a,,",
-// 		"a,,,",
-
-// 		",a",
-// 		",,a",
-// 		",,,a",
-
-// 		",a,",
-// 		",,a,,",
-// 		",,,a,,,",
-
-// 		"a,b",
-// 		"a,,b",
-// 		"a,,,b",
-
-// 		",a,b",
-// 		",,a,,b",
-// 		",,,a,,,b",
-
-// 		",a,b,",
-// 		",,a,,b,,",
-// 		",,,a,,,b,,,",
-// 		NULL
-// 	};
-
-// 	char		**arr;
-// 	uint64_t	i2;
-// 	uint64_t	i = 0;
-// 	char		*seperator = ",";
-// 	while (test[i] != NULL)
-// 	{
-// 		arr = ft_split(test[i], seperator);
-// 		i2 = 0;
-// 		printf("- ");
-// 		while (arr[i2] != NULL)
-// 		{
-// 			printf("<%s> ", arr[i2]);
-// 			i2++;
-// 		}
-// 		printf("\n");
-// 		free_string_array(arr);
-// 		i++;
-// 		if (i % 3 == 0)
-// 			printf("\n");
-// 	}
-// }

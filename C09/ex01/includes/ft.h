@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_file.h                                          :+:    :+:            */
+/*   ft.h                                               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: joppe <joppe@student.codam.nl>               +#+                     */
+/*   By: ecaceres <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/07/29 15:11:57 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/10 23:13:41 by joppe         ########   odam.nl         */
+/*   Created: 2019/08/12 12:05:14 by ecaceres      #+#    #+#                 */
+/*   Updated: 2020/09/10 23:54:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILE_H
-# define FT_FILE_H
+#ifndef FT_H
+# define FT_H
 
-char	*ft_read_file(char *filename);
-char	**ft_split_file(char *filename, char *seperator);
+void	ft_putchar(char c);
+void	ft_swap(int *a, int *b);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
