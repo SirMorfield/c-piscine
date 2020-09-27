@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/26 22:53:14 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/05 00:51:40 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/27 23:36:42 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,82 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define Y_SIZE 10
-#define X_SIZE 10
+#define MAX_LINE_LEN 10
 
-void		print_uint64_arr(uint64_t *arr, uint64_t len)
+bool	good_diagonal(char *line, int len)
 {
-	uint64_t i;
+	int		i;
+	char	forbidden;
+	char	newC;
 
-	if (len == 0)
-		return ;
+	newC = line[len - 1];
 	i = 0;
-	write(1, "{", 1);
-	while (i < len)
+	while (i < len - 1)
 	{
-
-		i++;
-	}
-	write(1, "}", 1);
-}
-
-uint64_t	delta(uint64_t a, uint64_t b)
-{
-	if (a > b)
-		return (a - b);
-	else
-		return (b - a);
-}
-
-bool	good_diagonal(uint64_t *line, uint64_t line_len)
-{
-	uint64_t i;
-
-	i = 1;
-	while (line_len - i - 1 >= 0)
-	{
-		if (delta(line[line_len - i - 1], line[line_len - 1]) == i)
+		forbidden = newC + (len - i - 1);
+		if (line[i] == forbidden)
+			return (false);
+		forbidden = newC - (len - i - 1);
+		if (line[i] == forbidden)
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-bool	good_vertical(uint64_t *line, uint64_t line_len)
+bool	good_vertical(char *line, int len)
 {
-	uint64_t i;
+	int i;
 
 	i = 0;
-	while (i + 1 < line_len)
+	while (i < len - 1)
 	{
-		if (line[i] == line[line_len - 1])
+		if (line[i] == line[len - 1])
 			return (false);
+			i++;
 	}
 	return (true);
 }
 
-void	row(uint64_t *line, uint64_t line_len)
+void	row(char *line, int len, int *permutations)
 {
-	int64_t x;
+	char c;
 
-	x = 0;
-	while (x < X_SIZE)
+	c = '0';
+	while (c <= '9')
 	{
-		line[line_len] = x;
-		if (good_diaganal(line, line_len + 1) &&  good_vertical(line, line_len + 1))
-		{
-			row(line, line_len + 1);
-			printf()
+		line[len] = c;
+		if (
+			good_vertical(line, len + 1) &&
+			good_diagonal(line, len + 1)
+		) {
+			if (len + 1 == MAX_LINE_LEN)
+			{
+				write(1, line, MAX_LINE_LEN);
+				write(1,"\n", 1);
+				(*permutations)++;
+			}
+			else
+				row(line, len + 1, permutations);
 		}
-		x++;
+		c++;
 	}
 }
-
 
 int		ft_ten_queens_puzzle(void)
 {
-	int64_t restult[Y_SIZE];
+	char	line[MAX_LINE_LEN];
+	int		permutations;
 
+	permutations = 0;
+	row(line, 0, &permutations);
+	return (permutations);
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("%i combinations\n", ft_ten_queens_puzzle());
+	return (0);
 }
