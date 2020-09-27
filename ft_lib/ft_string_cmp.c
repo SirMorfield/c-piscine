@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/23 00:43:03 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/24 19:55:04 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/25 00:02:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 int8_t	ft_strcmp(char *s1, char *s2)
 {
-	while (*s1 != '\0')
+	while (*s1 != '\0' && (*s1 == *s2))
 	{
-		if (*s1 != *s2)
-			break ;
 		s1++;
 		s2++;
 	}
-	return ((unsigned char)(*s1) - (unsigned char)(*s2));
+	return (*(unsigned char*)s1 - *(unsigned char*)s2);
 }
 
 int8_t	ft_strncmp(char *s1, char *s2, uint64_t n)

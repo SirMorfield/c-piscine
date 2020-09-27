@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/23 00:51:35 by joppe         #+#    #+#                 */
-/*   Updated: 2020/08/23 22:50:54 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/21 23:23:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ typedef unsigned int			uint32_t;
 typedef unsigned long int		uint64_t;
 #define uint128_t unsigned __int128_t
 
-typedef enum { false, true }	bool;
-#define true 1
-#define false 0
+typedef enum {
+	false = 0,
+	true = 1
+}	bool;
 
 // typedef char					char
 // typedef void					void
