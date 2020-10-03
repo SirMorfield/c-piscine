@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_file.c                                          :+:    :+:            */
+/*   ft_read_file.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/29 15:13:01 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/10 23:13:29 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/28 22:27:16 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,4 @@ char	*ft_read_file(char *filename)
 	buf = read_until_end(fd, block_size);
 	close(fd);
 	return (buf);
-}
-
-char	**ft_split_file(char *filename, char *seperator)
-{
-	char	*file;
-	char	**split;
-
-	file = ft_read_file(filename);
-	if (file == NULL)
-		return (NULL);
-	split = ft_split(file, seperator);
-	free(file);
-	return (split);
 }

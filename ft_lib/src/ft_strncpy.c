@@ -1,51 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_math.c                                          :+:    :+:            */
+/*   ft_strncpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/08/15 23:02:29 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/07 02:18:31 by joppe         ########   odam.nl         */
+/*   Created: 2020/08/23 00:40:04 by joppe         #+#    #+#                 */
+/*   Updated: 2020/10/03 22:34:47 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ft_string.h"
+#include <stdlib.h>
 
-
-int64_t		ft_power(int64_t nb, int64_t power)
+char	*ft_strncpy(char *dest, char *src, uint64_t n)
 {
-	int64_t result;
-
-	result = nb;
-	if (power == 0)
-		return (1);
-	while (power > 1)
-	{
-		result *= nb;
-		power--;
-	}
-	return (result);
-}
-
-int		ft_sqrt(int nb)
-{
-	int i;
+	uint64_t i;
 
 	i = 0;
-	if (nb > 0)
+	while (i < n)
 	{
-		while (i < 46432)
-		{
-			if (i * i == nb)
-				return (i);
-			i++;
-		}
+		dest[i] = src[i];
+		if (src[i] == '\0')
+			break ;
+		i++;
 	}
-	return (0);
-}
-
-int64_t	ft_abs(int64_t i)
-{
-  return (i < 0 ? -i : i);
+	return (dest + i);
 }

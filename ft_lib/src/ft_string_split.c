@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/31 01:39:54 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/11 15:43:00 by joppe         ########   odam.nl         */
+/*   Updated: 2020/09/28 22:05:47 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ uint64_t	count_words(char *str, char *charset, uint64_t charset_length)
 	return (words);
 }
 
-char		**ft_split(char *str, char *charset)
+char		**ft_string_split(char *str, char *charset)
 {
 	char		**arr;
 	uint64_t	i;

@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_string_cmp.c                                    :+:    :+:            */
+/*   ft_match_str.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/08/23 00:43:03 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/25 00:02:57 by joppe         ########   odam.nl         */
+/*   Created: 2020/09/28 22:10:59 by joppe         #+#    #+#                 */
+/*   Updated: 2020/09/28 22:11:59 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "types.h"
+#include "string.h"
 
-int8_t	ft_strcmp(char *s1, char *s2)
+uint64_t	ft_match_str(char **arr, uint64_t size, char *str)
 {
-	while (*s1 != '\0' && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(unsigned char*)s1 - *(unsigned char*)s2);
-}
+	int64_t 	low;
+	int64_t 	high;
+	uint64_t 	best_i;
+	int64_t		mid;
+	int8_t		cmp;
 
-int8_t	ft_strncmp(char *s1, char *s2, uint64_t n)
-{
-	uint64_t	i;
-
-	if (n == 0)
+	if (size == 0)
 		return (0);
-	i = 0;
-	n -= 1;
-	while (i < n)
+	low = 0;
+	high = (int64_t)size - 1;
+	best_i = size - 1;
+	while (low <= high)
 	{
-		if (s1[i] == '\0' || s1[i] != s2[i])
-			break ;
-		i++;
+		mid = (low + high) / 2;
+		best_i = mid;
+		cmp = ft_strcmp(str, arr[mid]);
+		if (cmp < 0)
+			high = mid - 1;
+		else if (cmp > 0)
+			low = mid + 1;
+		else
+			return (mid);
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (best_i);
 }
