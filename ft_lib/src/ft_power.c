@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/15 23:02:29 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/28 22:28:09 by joppe         ########   odam.nl         */
+/*   Updated: 2020/10/05 22:36:07 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int64_t		ft_power(int64_t nb, int64_t power)
 {
 	int64_t result;
 
-	result = nb;
 	if (power == 0)
 		return (1);
+	result = nb;
 	while (power > 1)
 	{
 		result *= nb;

@@ -6,10 +6,9 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/07 13:57:16 by joppe         #+#    #+#                 */
-/*   Updated: 2020/10/03 22:37:40 by joppe         ########   odam.nl         */
+/*   Updated: 2020/10/05 22:53:07 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "types.h"
 #include "ft_string.h"
@@ -20,7 +19,7 @@ void	ft_strnrev(char *str, uint64_t len)
 	uint64_t	left_i;
 	uint64_t	right_i;
 
-	if(len <= 1)
+	if (len <= 1)
 		return ;
 	left_i = 0;
 	right_i = len - 1;

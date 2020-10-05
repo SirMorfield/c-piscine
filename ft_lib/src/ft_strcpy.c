@@ -6,21 +6,19 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/23 00:40:04 by joppe         #+#    #+#                 */
-/*   Updated: 2020/10/03 22:34:15 by joppe         ########   odam.nl         */
+/*   Updated: 2020/10/05 22:45:06 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include "ft_string.h"
-#include <stdlib.h>
+#include "ft_memory.h"
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	while (*src != '\0')
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
+	uint64_t src_len;
+
+	src_len = ft_strlen(src);
+	ft_memcpy(dest, src, (len + 1) * sizeof(char));
 	return (dest);
 }

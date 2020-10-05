@@ -6,7 +6,7 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/08/26 22:53:14 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/27 23:36:42 by joppe         ########   odam.nl         */
+/*   Updated: 2020/10/04 20:17:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,15 @@
 bool	good_diagonal(char *line, int len)
 {
 	int		i;
-	char	forbidden;
-	char	newC;
+	char	lastC;
 
-	newC = line[len - 1];
+	lastC = line[len - 1];
 	i = 0;
 	while (i < len - 1)
 	{
-		forbidden = newC + (len - i - 1);
-		if (line[i] == forbidden)
+		if (line[i] == lastC + (len - i - 1))
 			return (false);
-		forbidden = newC - (len - i - 1);
-		if (line[i] == forbidden)
+		if (line[i] == lastC - (len - i - 1))
 			return (false);
 		i++;
 	}
@@ -46,7 +43,7 @@ bool	good_vertical(char *line, int len)
 	{
 		if (line[i] == line[len - 1])
 			return (false);
-			i++;
+		i++;
 	}
 	return (true);
 }
@@ -88,7 +85,7 @@ int		ft_ten_queens_puzzle(void)
 
 #include <stdio.h>
 
-int main(void)
+int		main(void)
 {
 	printf("%i combinations\n", ft_ten_queens_puzzle());
 	return (0);
