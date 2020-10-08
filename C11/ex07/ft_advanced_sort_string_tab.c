@@ -6,18 +6,26 @@
 /*   By: joppe <joppe@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/28 00:04:20 by joppe         #+#    #+#                 */
-/*   Updated: 2020/09/28 00:04:21 by joppe         ########   odam.nl         */
+/*   Updated: 2020/10/08 22:02:34 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+
+void	ft_swap_str(char **a, char **b)
+{
+	char *temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
 
 void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 {
 	int		i;
 	int		size;
 	bool	done;
-	char	*temp;
 
 	size = 0;
 	while (tab[size])
@@ -31,9 +39,7 @@ void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 		{
 			if ((*cmp)(tab[i], tab[i + 1]) > 0)
 			{
-				temp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = temp;
+				ft_swap(tab + i, tab + i + 1);
 				done = false;
 			}
 			i++;
