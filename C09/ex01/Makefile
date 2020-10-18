@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: ecaceres <marvin@42.fr>                      +#+                      #
+#    By: joppe <joppe@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/08/12 12:36:23 by ecaceres      #+#    #+#                  #
-#    Updated: 2020/09/11 00:24:02 by joppe         ########   odam.nl          #
+#    Created: 2020/10/10 14:38:13 by joppe         #+#    #+#                  #
+#    Updated: 2020/10/10 14:38:14 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
